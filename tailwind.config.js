@@ -12,7 +12,7 @@ export default {
       'MCS-Blue': '#206191',
       'MCS-LightBlue': '#2bc0d3',
       'MCS-WhiteBlue': '#aaced1',
-      'MCS-DarkGray': '#2b2b2b',
+      'MCS-Gray': '#616161',
       'white': '#ffffff',
     }
   },
