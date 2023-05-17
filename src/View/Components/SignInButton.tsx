@@ -1,6 +1,5 @@
 import { getApp } from "firebase/app";
 import { OAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { redirect } from "react-router-dom";
 
 export default function SignInButton() {
 
