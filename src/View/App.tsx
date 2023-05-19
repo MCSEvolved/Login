@@ -4,10 +4,9 @@ import NoPage from "./Pages/NoPage";
 import LoginPage from "./Pages/LoginPage";
 
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: "AIzaSyBlfZjJyhjcgyPfxaqkZHSR5SciFBWC5IY",
   authDomain: "mcsynergy-55878.firebaseapp.com",
   projectId: "mcsynergy-55878",
   storageBucket: "mcsynergy-55878.appspot.com",
@@ -16,8 +15,7 @@ const firebaseConfig = {
   measurementId: "G-3BK4KLMGTJ"
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+initializeApp(firebaseConfig);
 
 export default function App() {
   return (
