@@ -1,6 +1,6 @@
 import { getApp } from "firebase/app";
 import { OAuthProvider, browserLocalPersistence, getAuth, signInWithPopup } from "firebase/auth";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInButton() {
   
@@ -11,6 +11,7 @@ export default function SignInButton() {
     localStorage.setItem('accessToken', accessToken);
   }
 
+  const navigate = useNavigate();
 
   const signIn = () => {
     const provider = new OAuthProvider('microsoft.com');
@@ -25,9 +26,8 @@ export default function SignInButton() {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        saveAccessTokenInLocalStorage(OAuthProvider.credentialFromResult(result)?.accessToken)
-        return redirect('/')
-
+        saveAccessTokenInLocalStorage(OAuthProvider.credentialFromResult(result)?.accessToken);
+        navigate('/')
       }).catch((error) => {
         alert("Something went wrong. Please try again. (Error: " + error.code + ")");
     });
