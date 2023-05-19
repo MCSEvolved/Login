@@ -17,7 +17,6 @@ export default function SignInButton() {
     const provider = new OAuthProvider('microsoft.com');
     provider.setCustomParameters({
       prompt: 'select_account',
-      tenant: '32df73d7-fe92-47d0-9749-9d50d58e4f0c'
     });
     const app = getApp();
     const auth = getAuth(app);
@@ -29,6 +28,7 @@ export default function SignInButton() {
         saveAccessTokenInLocalStorage(OAuthProvider.credentialFromResult(result)?.accessToken);
         navigate('/')
       }).catch((error) => {
+        console.log(error)
         alert("Something went wrong. Please try again. (Error: " + error.code + ")");
     });
   };
