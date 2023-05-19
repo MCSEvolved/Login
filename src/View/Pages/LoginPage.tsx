@@ -1,5 +1,6 @@
 import DisclaimerText from '../Components/DisclaimerText'
 import SignInButton from '../Components/SignInButton'
+import TestComponent from '../Components/TestComponent'
 import WelcomeText from '../Components/WelcomeText'
 import {ReactComponent as MCSEvolvedLogo} from '../Images/mcse-logo-wide.svg'
 
@@ -13,6 +14,7 @@ export default function LoginPage() {
         <SignInButton />
         <DisclaimerText />
       </div>
+      <TestComponent></TestComponent>
     </div>
   )
 }
