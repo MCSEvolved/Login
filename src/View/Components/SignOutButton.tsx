@@ -13,7 +13,7 @@ export default function SignOutButton() {
       className='bg-MCS-BlueBlack h-9 w-20 rounded-md'
       onClick={signOut}
     >
-      Hey there MCS Player!
+      Sign Out
     </button>
   )
 }
