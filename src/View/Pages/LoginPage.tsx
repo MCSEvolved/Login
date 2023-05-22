@@ -14,7 +14,7 @@ export default function LoginPage() {
         <SignInButton />
         <DisclaimerText />
       </div>
-      <TestComponent></TestComponent>
+      {/* <TestComponent></TestComponent> */}
     </div>
   )
 }
