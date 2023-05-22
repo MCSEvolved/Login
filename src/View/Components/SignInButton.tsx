@@ -41,10 +41,8 @@ export default function SignInButton() {
     signInWithPopup(auth, provider)
       .then((result) => {
         saveAccessTokenInLocalStorage(OAuthProvider.credentialFromResult(result)?.accessToken);
-        console.log(result)
-        console.log(getAdditionalUserInfo(result))
-        return result.user.getIdToken()
         if (getAdditionalUserInfo(result)?.isNewUser) {
+          return result.user.getIdToken()
         }
       }).then((idToken) => {
         if (idToken) {
