@@ -15,6 +15,22 @@ export default function TestComponent() {
         console.log(auth.currentUser?.displayName)
     }
 
+    const getRoles = async () => {
+        const idToken = await auth.currentUser?.getIdToken()
+        const response = await fetch('http://localhost:8000/api/auth/get-user-roles/' + idToken, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          })
+        const roles = await response.json()
+        console.log(roles)
+        console.log("--------------------")
+        console.log(auth.currentUser?.toJSON())
+        console.log("--------------------")
+        console.log(await auth.currentUser?.getIdTokenResult())
+    }
+
     return (
         <div className="absolute top-0 right-0 w-72 h-40 bg-MCS-Gray">
             test
@@ -22,6 +38,9 @@ export default function TestComponent() {
             <button onClick={logData}
             className="bg-MCS-Blue h-12 w-72 rounded-md font-bold"
             >get data</button>
+            <button onClick={getRoles}
+                className="bg-MCS-Blue h-12 w-72 mt-2 rounded-md font-bold"
+            >get role</button>
         </div>
     )
 
