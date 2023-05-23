@@ -11,8 +11,8 @@ export default function SignInButton() {
     localStorage.setItem('accessToken', accessToken);
   }
 
-  const handleNewUser = (idToken: string) => {
-    fetch('http://localhost:8000/api/auth/check-new-user', {
+  const handleNewUser = async (idToken: string) => {
+    await fetch('http://localhost:8000/api/auth/check-user-roles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export default function SignInButton() {
       }).then(() => {
         const app = getApp();
         const auth = getAuth(app);
-        auth.currentUser?.getIdToken()
+        auth.currentUser?.getIdToken(true)
       }
     )
   }
@@ -44,9 +44,9 @@ export default function SignInButton() {
         if (getAdditionalUserInfo(result)?.isNewUser) {
           return result.user.getIdToken()
         }
-      }).then((idToken) => {
+      }).then(async (idToken) => {
         if (idToken) {
-          handleNewUser(idToken)
+          await handleNewUser(idToken)
         }
         navigate('/')
       })

@@ -17,12 +17,12 @@ export default function TestComponent() {
 
     const getRoles = async () => {
         const idToken = await auth.currentUser?.getIdToken()
-        const response = await fetch('http://localhost:8000/api/auth/get-user-roles/' + idToken, {
+        const response = await fetch('http://localhost:8000/api/auth/get-user-claims/' + idToken, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
             },
-          })
+        })
         const roles = await response.json()
         console.log(roles)
         console.log("--------------------")
