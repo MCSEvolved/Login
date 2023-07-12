@@ -12,18 +12,17 @@ export default function SignInButton() {
   }
 
   const handleNewUser = async (idToken: string) => {
-    await fetch('http://localhost:8000/api/auth/check-user-roles', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({"idtoken": idToken})
-      }).then(() => {
-        const app = getApp();
-        const auth = getAuth(app);
-        auth.currentUser?.getIdToken(true)
+    const response = await fetch('https://api.mcsynergy.nl/auth/check-new-user', {
+      method: 'POST',
+      headers: {
+        'authorization': idToken
       }
-    )
+    })
+    if (!response.ok) {
+      alert("Something went wrong. Please try again. (Error: " + await response.text() + ")");
+    }
+
+    console.log("Response OK from auth server")
   }
 
   const navigate = useNavigate();

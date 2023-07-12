@@ -16,19 +16,25 @@ export default function TestComponent() {
     }
 
     const getRoles = async () => {
-        const idToken = await auth.currentUser?.getIdToken()
-        const response = await fetch('http://localhost:8000/api/auth/get-user-claims/' + idToken, {
+        const idToken = await auth.currentUser?.getIdToken(true)
+        if (!idToken) {
+            console.log("no idToken")
+            return
+        }
+        const response = await fetch('https://api.mcsynergy.nl/auth/get-user-claims', {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json'
-            },
+                'authorization': idToken
+            }
         })
-        const roles = await response.json()
-        console.log(roles)
-        console.log("--------------------")
-        console.log(auth.currentUser?.toJSON())
-        console.log("--------------------")
-        console.log(await auth.currentUser?.getIdTokenResult())
+        if (response.ok) {
+            const data = await response.json()
+            console.log("role: " + data.role)
+        }
+        else {
+            console.log("response code:" + response.status)
+            console.log(await response.text())
+        }
     }
 
     return (
