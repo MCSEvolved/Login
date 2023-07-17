@@ -1,6 +1,5 @@
 import { getApp } from "firebase/app";
 import { OAuthProvider, browserLocalPersistence, getAdditionalUserInfo, getAuth, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
 export default function SignInButton() {
   
@@ -25,8 +24,6 @@ export default function SignInButton() {
     console.log("Response OK from auth server")
   }
 
-  const navigate = useNavigate();
-
   const signIn = () => {
     const provider = new OAuthProvider('microsoft.com');
     provider.setCustomParameters({
@@ -47,7 +44,11 @@ export default function SignInButton() {
         if (idToken) {
           await handleNewUser(idToken)
         }
-        navigate('/')
+        const urlParams = new URLSearchParams(window.location.search)
+        let redirect = urlParams.get("redirect")
+        redirect = redirect ? redirect : ''
+        //@ts-ignore
+        window.location = `/${redirect}`
       })
       .catch((error) => {
         alert("Something went wrong. Please try again. (Error: " + error.code + ")");
