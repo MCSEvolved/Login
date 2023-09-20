@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { handleNewUser } from "../../Logic/SignIn";
 
 export default function SignInAsGuestButton() {
-  const navigate = useNavigate();
 
   const signInAsGuest = () => {
     const auth = getAuth();
@@ -12,7 +11,11 @@ export default function SignInAsGuestButton() {
         return result.user.getIdToken()
       }).then(async (idToken) => {
         await handleNewUser(idToken)
-        navigate('/')
+        const urlParams = new URLSearchParams(window.location.search)
+        let redirect = urlParams.get("redirect")
+        redirect = redirect ? redirect : ''
+        //@ts-ignore
+        window.location = `/${redirect}`
       })
       .catch((error) => {
         alert("Something went wrong. Please try again. (Error: " + error.code + ")");
