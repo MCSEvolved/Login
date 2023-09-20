@@ -1,6 +1,7 @@
 import { getApp } from "firebase/app";
 import { OAuthProvider, browserLocalPersistence, getAdditionalUserInfo, getAuth, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { handleNewUser } from "../../Logic/SignIn";
 
 export default function SignInButton() {
   
@@ -10,21 +11,7 @@ export default function SignInButton() {
     }
     localStorage.setItem('accessToken', accessToken);
   }
-
-  const handleNewUser = async (idToken: string) => {
-    const response = await fetch('https://api.mcsynergy.nl/auth/check-new-user', {
-      method: 'POST',
-      headers: {
-        'authorization': idToken
-      }
-    })
-    if (!response.ok) {
-      alert("Something went wrong. Please try again. (Error: " + await response.text() + ")");
-    }
-
-    console.log("Response OK from auth server")
-  }
-
+  
   const navigate = useNavigate();
 
   const signIn = () => {
@@ -56,7 +43,7 @@ export default function SignInButton() {
 
   return (
     <button
-      className='bg-MCS-Blue h-12 w-72 rounded-md font-bold'
+      className=" bg-MCS-Blue h-12 w-72 rounded-md font-bold"
       onClick={signIn}
     >
       Login with Microsoft

@@ -29,7 +29,7 @@ export default function TestComponent() {
         })
         if (response.ok) {
             const data = await response.json()
-            console.log("role: " + data.role)
+            console.log(data)
         }
         else {
             console.log("response code:" + response.status)

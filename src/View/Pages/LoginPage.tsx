@@ -1,4 +1,4 @@
-import DisclaimerText from '../Components/DisclaimerText'
+import SignInAsGuestButton from '../Components/SignInAsGuestButton'
 import SignInButton from '../Components/SignInButton'
 import TestComponent from '../Components/TestComponent'
 import WelcomeText from '../Components/WelcomeText'
@@ -12,7 +12,7 @@ export default function LoginPage() {
         <MCSEvolvedLogo className='h-32 m-8'/>
         <WelcomeText />
         <SignInButton />
-        <DisclaimerText />
+        <SignInAsGuestButton />
       </div>
       {/* <TestComponent></TestComponent> */}
     </div>
