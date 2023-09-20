@@ -34,7 +34,11 @@ export default function SignInButton() {
         if (idToken) {
           await handleNewUser(idToken)
         }
-        navigate('/')
+        const urlParams = new URLSearchParams(window.location.search)
+        let redirect = urlParams.get("redirect")
+        redirect = redirect ? redirect : ''
+        //@ts-ignore
+        window.location = `/${redirect}`
       })
       .catch((error) => {
         alert("Something went wrong. Please try again. (Error: " + error.code + ")");
