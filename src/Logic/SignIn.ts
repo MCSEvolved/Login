@@ -12,5 +12,5 @@ export const handleNewUser = async (idToken: string) => {
     }
 
     const auth = getAuth();
-    auth.currentUser?.getIdToken(true);
+    await auth.currentUser?.getIdToken(true);
 }

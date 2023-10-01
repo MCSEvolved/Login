@@ -1,5 +1,4 @@
-import { getAdditionalUserInfo, getAuth, signInAnonymously } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { getAuth, signInAnonymously } from "firebase/auth";
 import { handleNewUser } from "../../Logic/SignIn";
 
 export default function SignInAsGuestButton() {
@@ -19,10 +18,9 @@ export default function SignInAsGuestButton() {
       })
       .catch((error) => {
         alert("Something went wrong. Please try again. (Error: " + error.code + ")");
+        console.log(error);
       });
   };
-
-
 
   return (
     <>
