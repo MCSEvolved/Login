@@ -14,7 +14,7 @@ export default function SignInAsGuestButton() {
         let redirect = urlParams.get("redirect")
         redirect = redirect ? redirect : ''
         //@ts-ignore
-        window.location = `/${redirect}`
+        window.location.href = redirect
       })
       .catch((error) => {
         alert("Something went wrong. Please try again. (Error: " + error.code + ")");
